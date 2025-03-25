@@ -35,6 +35,6 @@ def check_password():
     else:
         for c in pw:
             if c == "!" or c == "@" or c == "#" or c == "$" or c == "%" or c == "^" or c == "&" or c == "*":
-                return flask.jsonify({"valid": True, "reason": "Valid"}), 200
+                return flask.jsonify({"valid": True, "reason": ""}), 200
             
     return flask.jsonify({"valid": False, "reason": "No special character"}), 400
