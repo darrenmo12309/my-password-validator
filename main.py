@@ -27,14 +27,14 @@ def check_password():
 
     # FIXME: to be implemented
     if len(pw) < 8:
-        return flask.jsonify({"valid": False, "reason": "Too short"}), 400
+        return flask.jsonify({"valid": False, "reason": "Too short"}), 200
     elif sum([c.isupper() for c in pw]) < 1:
-        return flask.jsonify({"valid": False, "reason": "No uppercase"}), 400
+        return flask.jsonify({"valid": False, "reason": "No uppercase"}), 200
     elif sum([c.isdigit() for c in pw]) < 1:
-        return flask.jsonify({"valid": False, "reason": "No digit"}), 400
+        return flask.jsonify({"valid": False, "reason": "No digit"}), 200
     else:
         for c in pw:
             if c == "!" or c == "@" or c == "#" or c == "$" or c == "%" or c == "^" or c == "&" or c == "*":
                 return flask.jsonify({"valid": True, "reason": ""}), 200
             
-    return flask.jsonify({"valid": False, "reason": "No special character"}), 400
+    return flask.jsonify({"valid": False, "reason": "No special character"}), 200
