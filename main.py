@@ -28,9 +28,9 @@ def check_password():
     # FIXME: to be implemented
     if len(pw) < 8:
         return flask.jsonify({"valid": False, "reason": "Too short"}), 400
-    elif sum([c.isupper() for c in pw]) < 2:
+    elif sum([c.isupper() for c in pw]) < 1:
         return flask.jsonify({"valid": False, "reason": "No uppercase"}), 400
-    elif sum([c.isdigit() for c in pw]) < 2:
+    elif sum([c.isdigit() for c in pw]) < 1:
         return flask.jsonify({"valid": False, "reason": "No digit"}), 400
     else:
         for c in pw:
