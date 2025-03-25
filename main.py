@@ -2,7 +2,7 @@ import flask
 
 
 # TODO: change this to your academic email
-AUTHOR = "lumbroso@seas.upenn.edu"
+AUTHOR = "darrenmo@sas.upenn.edu"
 
 
 app = flask.Flask(__name__)
@@ -26,4 +26,15 @@ def check_password():
     pw = data.get("password", "")
 
     # FIXME: to be implemented
-    return flask.jsonify({"valid": False, "reason": "Not implemented"}), 501
+    if len(pw) < 8:
+        return flask.jsonify({"valid": False, "reason": "Too short"}), 400
+    elif sum([c.isupper() for c in pw]) < 2:
+        return flask.jsonify({"valid": False, "reason": "No uppercase"}), 400
+    elif sum([c.isdigit() for c in pw]) < 2:
+        return flask.jsonify({"valid": False, "reason": "No digit"}), 400
+    else:
+        for c in pw:
+            if c == "!" or c == "@" or c == "#" or c == "$" or c == "%" or c == "^" or c == "&" or c == "*":
+                return flask.jsonify({"valid": True, "reason": "Valid"}), 200
+            
+    return flask.jsonify({"valid": False, "reason": "No special character"}), 400
